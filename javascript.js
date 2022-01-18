@@ -7,3 +7,10 @@ var queryURL =
   APIKey;
 
 fetch(queryURL);
+
+
+
+
+//retreve localStorage and 
+
+//Use localStorage to store city
