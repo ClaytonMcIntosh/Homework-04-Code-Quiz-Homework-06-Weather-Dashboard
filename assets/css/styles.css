@@ -9,4 +9,27 @@ button {
   padding: 10px;
 }
 
+.classred,
+.classorange,
+.classgreen,
+.classblack {
+  padding: 3px;
+  border-radius: 5px;
+}
 
+.classred {
+  background-color: red;
+}
+
+.classorange {
+  background-color: orange;
+}
+
+.classgreen {
+  background-color: green;
+}
+
+.classblack {
+  color: white;
+  background-color: black;
+}

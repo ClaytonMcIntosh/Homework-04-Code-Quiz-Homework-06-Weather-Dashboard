@@ -49,7 +49,6 @@ function fetchResetData() {
       lat = data.coord.lat;
       queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
       fetch1call();
-      uvidata.textContent = uv;
     });
 }
 
@@ -62,6 +61,15 @@ function fetch1call() {
       queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
       uv = data1call.current.uvi;
       uvidata.textContent = uv;
+      if (uv == 0) {
+        uvidata.className = "classblack";
+      } else if (uv <= 2) {
+        uvidata.className = "classgreen";
+      } else if (uv <= 7) {
+        uvidata.className = "classorange";
+      } else {
+        uvidata.className = "classred";
+      }
     });
 }
 
