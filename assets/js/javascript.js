@@ -1,13 +1,13 @@
 const APIKey = "6dfd8cecea8d0220febc6bc4c30dbd34";
 var city = "Brisbane";
-var lon = 153.0281;
-var lat = -27.4679;
+let uvi = "-";
+let uv = "-";
+let lon = 153.0281;
+let lat = -27.4679;
 var queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
 var queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
 let temp = "-";
 let wind = "-";
-let uvi = "-";
-let uv = "-";
 let input = document.querySelector("input");
 let tempdata = document.getElementById("temp");
 let winddata = document.getElementById("wind");
@@ -15,27 +15,8 @@ let uvidata = document.getElementById("uv");
 let humiditydata = document.getElementById("humidity");
 let cityName = document.getElementById("cityName");
 let data1call = "";
-//Update from start
 
-//gets UV index based on lon and lat
-
-fetch1call();
-
-function fetch1call() {
-  fetch(queryURL1call)
-    .then((query1callResults) => query1callResults.json())
-    .then((data1call) => {
-      console.log(data1call.current.uvi);
-      uv = data1call.current.uvi;
-      console.log("aaa" + uv)
-    });
-}
-
-console.log("yes" + uv);
-
-updateCityData();
-
-//queryselector on button.
+//queryselector on click of Search button updates the city name and runs the APIkey.
 
 document.getElementById("searchBtn").addEventListener("click", function () {
   city = input.value;
@@ -43,15 +24,16 @@ document.getElementById("searchBtn").addEventListener("click", function () {
   updateCityData();
 });
 
-console.log("yes2" + uv);
+function init() {
+  updateCityData();
+  fetch1call();
+}
 
 //changing City Name to city variable
 function updateCityData() {
   cityName.textContent = city;
   fetchResetData();
 }
-
-console.log("yes3" + uv);
 
 function fetchResetData() {
   fetch(queryURLcurrent)
@@ -65,17 +47,25 @@ function fetchResetData() {
       humiditydata.textContent = humidity;
       lon = data.coord.lon;
       lat = data.coord.lat;
-      console.log("lon = " + lon);
-      console.log("lat = " + lat);
       queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
       fetch1call();
       uvidata.textContent = uv;
-      console.log("yes4" + uv);
-      console.log(uv);
     });
 }
 
-//changing temp
+//gets UV index based on lon and lat
+
+function fetch1call() {
+  fetch(queryURL1call)
+    .then((query1callResults) => query1callResults.json())
+    .then((data1call) => {
+      queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+      uv = data1call.current.uvi;
+      uvidata.textContent = uv;
+    });
+}
+
+init();
 
 //retreve localStorage of stored cities
 
