@@ -19,17 +19,17 @@
 
   <body>
     <!-- weather dashboard header -->
-    <nav class="navbar-fluid navbar-light" style="background-color: #e3f2fd">
+    <nav class="navbar-fluid navbar-light" style="color: white; background-color: #362967; padding: 10px">
       <h1 class="text-center">Weather Dashboard</h1>
     </nav>
 
     <!-- search for a city -->
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-4" style="background-color: #e8faa5">
-          <h2>Search for a City:</h2>
-          <input type="text"></input>
+        <div class="col-3" style="background-color: #ffffff;  border: 1px solid black; padding: 10px">
+          <h4>Search for a City:</h4>
+          <input type="text" id="input_text"></input>
           <button>Search</button>
           <hr>
           <!-- previous cities searched -->
@@ -39,8 +39,8 @@
           <button>Temp City</button>
         </div>
         <!-- Info about city -->
-        <div class="col-8" style="background-color: #6bffc6">
-          <div class="col" style="background-color: #55a7b0">
+        <div class="col-9" style="background-color: #fff; padding: 10px">
+          <div class="col" style="background-color: #e3f2fd" id="citycon">
             <h3>City Name</h3>
             <p>Temp:</p>
             <p>Wind:</p>
@@ -48,13 +48,18 @@
             <p>UV Index:</p>
             <span style="background-color: red">UV</span>
           </div>
-          <div class="col" style="background-color: #9b611e">
-            <h4>5 Day Forcast</h4>
-            <div class="col-2">row1</div>
-            <div class="col-2">row1</div>
-            <div class="col-2">row1</div>
-            <div class="col-2">row1</div>
-            <div class="cp-2">row1</div>
+              <div class="col" style="background-color: #fff; padding: 10px">
+                <h4>5 Day Forcast</h4>
+                  <div class="row">
+                  <div class="col" style="color: white; background-color: #362967; margin:4px">Text</div>
+                  <div class="col" style="color: white; background-color: #362967; margin:4px">Text</div>
+                  <div class="col" style="color: white; background-color: #362967; margin:4px">Text</div>
+                  <div class="col" style="color: white; background-color: #362967; margin:4px">Text</div>
+                  <div class="col" style="color: white; background-color: #362967; margin:4px">Text</div>
+                </div>
+
+            </div>
+
           </div>
         </div>
 

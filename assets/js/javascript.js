@@ -1,11 +1,15 @@
-var city;
-var queryURL =
-  "http://api.openweathermap.org/data/2.5/weather?q=" +
-  city +
-  "&appid=" +
-  APIKey;
+const APIKey = "6dfd8cecea8d0220febc6bc4c30dbd34";
+var city = "Brisbane";
+var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
 
-// fetch(queryURL);
+fetch(queryURL)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data.coord);
+    let temp = data.main.temp;
+    let humidity = data.main.humidity;
+    let wind = data.wind.speed;
+  });
 
 //retreve localStorage of stored cities
 
