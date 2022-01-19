@@ -2,13 +2,13 @@ const APIKey = "6dfd8cecea8d0220febc6bc4c30dbd34";
 var city = "Brisbane";
 var lon = 153.0281;
 var lat = -27.4679;
-var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
+var queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
 var queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
-const input = document.querySelector("input");
 let temp = "-";
 let wind = "-";
 let uvi = "-";
 let uv = "-";
+let input = document.querySelector("input");
 let tempdata = document.getElementById("temp");
 let winddata = document.getElementById("wind");
 let uvidata = document.getElementById("uv");
@@ -27,7 +27,7 @@ function fetch1call() {
     .then((data1call) => {
       console.log(data1call.current.uvi);
       uv = data1call.current.uvi;
-      console.log(uv)
+      console.log("aaa" + uv)
     });
 }
 
@@ -39,7 +39,7 @@ updateCityData();
 
 document.getElementById("searchBtn").addEventListener("click", function () {
   city = input.value;
-  queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
+  queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
   updateCityData();
 });
 
@@ -54,7 +54,7 @@ function updateCityData() {
 console.log("yes3" + uv);
 
 function fetchResetData() {
-  fetch(queryURL)
+  fetch(queryURLcurrent)
     .then((queryResults) => queryResults.json())
     .then((data) => {
       temp = data.main.temp;
