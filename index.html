@@ -27,21 +27,18 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-3" style="background-color: #ffffff;  border: 1px solid black; padding: 10px">
+        <div class="col-3" style="background-color: #ffffff; padding: 10px">
           <h4>Search for a City:</h4>
-          <input type="text" id="input_text"></input>
-          <button>Search</button>
+          <input type="text" id="input_text" placeholder="Brisbane"></input>
+          <button id="searchBtn">Search</button>
           <hr>
           <!-- previous cities searched -->
-          <button>Temp City</button>
-          <button>Temp City</button>
-          <button>Temp City</button>
-          <button>Temp City</button>
+          <div id="history"></div>
         </div>
         <!-- Info about city -->
         <div class="col-9" style="background-color: #fff; padding: 10px">
           <div class="col" style="background-color: #e3f2fd" id="citycon">
-            <h3>City Name</h3>
+            <h3 id="cityName">City Name</h3>
             <p>Temp:</p>
             <p>Wind:</p>
             <p>Humidity:</p>

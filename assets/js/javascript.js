@@ -1,9 +1,27 @@
 const APIKey = "6dfd8cecea8d0220febc6bc4c30dbd34";
 var city = "Brisbane";
 var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
+const input = document.querySelector("input");
+
+//Update from start
+
+updateCityData();
+
+//queryselector on button.
+
+document.getElementById("searchBtn").addEventListener("click", function () {
+  city = input.value;
+  updateCityData();
+});
+
+//changing City Name to city variable
+function updateCityData() {
+  let cityName = document.getElementById("cityName");
+  cityName.textContent = city;
+}
 
 fetch(queryURL)
-  .then((res) => res.json())
+  .then((queryResults) => queryResults.json())
   .then((data) => {
     console.log(data.coord);
     let temp = data.main.temp;
