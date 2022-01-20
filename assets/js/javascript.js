@@ -6,6 +6,7 @@ let lon = 153.0281;
 let lat = -27.4679;
 var queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
 var queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+var queryURLforcast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`;
 let temp = "-";
 let wind = "-";
 let iconN = "10d";
@@ -23,6 +24,7 @@ let unix = "";
 document.getElementById("searchBtn").addEventListener("click", function () {
   city = input.value;
   queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
+
   updateCityData();
 });
 
@@ -96,33 +98,48 @@ init();
 
 //5day forcast with date
 
-var queryURLforcast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`;
+//get unix time
+//set days
+//cycle through 5 days
+//add: 86400
+//set variables for
+//date
+//icon
+//temp
+//wind
+//humidity
 
 forcast();
-
-function getUnixTime() {
-
-
-}
-
-  //set days
-  //cycle through 5 days
-  //add: 86400
-  //set variables for 
-  //date
-  //icon
-  //temp
-  //wind
-  //humidity
-
-
 
 function forcast() {
   fetch(queryURLforcast)
     .then((queryForcastResults) => queryForcastResults.json())
     .then((dataForcast) => {
-      console.log(dataForcast.list[0]);
-      console.log(dataForcast.list[0].wind.speed);
+      console.log(dataForcast);
+
+      //unix time
+      console.log("unix = " + dataForcast.list[0].dt);
+
+      //date
+
+      //icon
+      console.log("icon = " + dataForcast.list[0].weather[0].icon);
+      //temp
+      console.log("temp = " + dataForcast.list[0].main.temp);
+      //wind
+      console.log("wind = " + dataForcast.list[0].wind.speed);
+      //humidity
+      console.log("humidity = " + dataForcast.list[0].main.humidity);
+
+
+//unix time
+console.log("unix tom 2 = " + dataForcast.list[8].dt);
+console.log("unix tom 3 = " + dataForcast.list[16].dt);
+console.log("unix tom 4 = " + dataForcast.list[24].dt);
+console.log("unix tom 5 = " + dataForcast.list[32].dt);
+
+
+
     });
 }
 
