@@ -8,13 +8,20 @@ var queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&
 var queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
 var queryURLforcast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`;
 let temp = "-";
+let day1temp = "-";
 let wind = "-";
+let day1wind = "-";
+let humidity = "-";
+let day1humidity = "-";
 let iconN = "10d";
 let input = document.querySelector("input");
 let tempdata = document.getElementById("temp");
+let day1tempdata = document.getElementById("day1temp");
 let winddata = document.getElementById("wind");
+let day1winddata = document.getElementById("day1wind");
 let uvidata = document.getElementById("uv");
 let humiditydata = document.getElementById("humidity");
+let day1humiditydata = document.getElementById("day1humidity");
 let cityName = document.getElementById("cityName");
 let data1call = "";
 let unix = "";
@@ -118,28 +125,45 @@ function forcast() {
       console.log(dataForcast);
 
       //unix time
-      console.log("unix = " + dataForcast.list[0].dt);
 
       //date
 
+      // function icon() {
+      //   var icon = document.createElement("img");
+      //   icon.src = `http://openweathermap.org/img/w/${iconN}.png`;
+      //   document.getElementById("cityName").appendChild(icon);
+      // }
+
       //icon
-      console.log("icon = " + dataForcast.list[0].weather[0].icon);
+      // var day1icon = dataForcast.list[0].weather[0].icon;
+      // var day1iconN = document.createElement("img");
+      // day1icon.src = `http://openweathermap.org/img/w/${day1iconN}.png`;
+      // console.log(day1icon);
+      // document.getElementById("icon").appendChild(day1icon);
       //temp
-      console.log("temp = " + dataForcast.list[0].main.temp);
+      day1temp = dataForcast.list[0].main.temp;
+      day1tempdata.textContent = day1temp;
       //wind
-      console.log("wind = " + dataForcast.list[0].wind.speed);
+      day1wind = dataForcast.list[0].wind.speed;
+      day1winddata.textContent = day1wind;
       //humidity
-      console.log("humidity = " + dataForcast.list[0].main.humidity);
+      day1humidity = dataForcast.list[0].main.humidity;
+      day1humiditydata.textContent = day1humidity;
 
+      //unix time
+      console.log("unix = " + dataForcast.list[0].dt);
+      console.log("unix tom 2 = " + dataForcast.list[4].dt);
+      console.log("unix tom 3 = " + dataForcast.list[12].dt);
+      console.log("unix tom 4 = " + dataForcast.list[20].dt);
+      console.log("unix tom 5 = " + dataForcast.list[28].dt);
 
-//unix time
-console.log("unix tom 2 = " + dataForcast.list[8].dt);
-console.log("unix tom 3 = " + dataForcast.list[16].dt);
-console.log("unix tom 4 = " + dataForcast.list[24].dt);
-console.log("unix tom 5 = " + dataForcast.list[32].dt);
-
-
-
+      // console.log("icon = " + dataForcast.list[0].weather[0].icon);
+      // //temp
+      // console.log("temp = " + dataForcast.list[0].main.temp);
+      // //wind
+      // console.log("wind = " + dataForcast.list[0].wind.speed);
+      // //humidity
+      // console.log("humidity = " + dataForcast.list[0].main.humidity);
     });
 }
 
