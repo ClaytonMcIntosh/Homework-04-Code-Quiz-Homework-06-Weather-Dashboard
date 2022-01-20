@@ -8,6 +8,7 @@ var queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&
 var queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
 let temp = "-";
 let wind = "-";
+let iconN = "10d";
 let input = document.querySelector("input");
 let tempdata = document.getElementById("temp");
 let winddata = document.getElementById("wind");
@@ -15,6 +16,7 @@ let uvidata = document.getElementById("uv");
 let humiditydata = document.getElementById("humidity");
 let cityName = document.getElementById("cityName");
 let data1call = "";
+let unix = "";
 
 //queryselector on click of Search button updates the city name and runs the APIkey.
 
@@ -24,6 +26,7 @@ document.getElementById("searchBtn").addEventListener("click", function () {
   updateCityData();
 });
 
+//play functions to update data
 function init() {
   updateCityData();
   fetch1call();
@@ -35,10 +38,14 @@ function updateCityData() {
   fetchResetData();
 }
 
+//based on city name, function to update current weather data
 function fetchResetData() {
   fetch(queryURLcurrent)
     .then((queryResults) => queryResults.json())
     .then((data) => {
+      iconN = data.weather[0].icon;
+      icon();
+      //console.log(data);
       temp = data.main.temp;
       wind = data.wind.speed;
       humidity = data.main.humidity;
@@ -53,7 +60,6 @@ function fetchResetData() {
 }
 
 //gets UV index based on lon and lat
-
 function fetch1call() {
   fetch(queryURL1call)
     .then((query1callResults) => query1callResults.json())
@@ -73,27 +79,52 @@ function fetch1call() {
     });
 }
 
+//update the icon element
+function icon() {
+  var icon = document.createElement("img");
+  icon.src = `http://openweathermap.org/img/w/${iconN}.png`;
+  document.getElementById("cityName").appendChild(icon);
+}
+
 init();
 
 //retreve localStorage of stored cities
 
 //on search, store city to localStorage
 
-//when user searches for a city, it updates to that city
-
-//when user searches a city, find the city (longitude and latitude?)
-
-//provide the city name
-
 //provide the date
 
-//provide an icon representing weather condition
-
-//provide temperature
-
-//provide UV index by colour (favourable, moderate, severe)
-
 //5day forcast with date
+
+var queryURLforcast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`;
+
+forcast();
+
+function getUnixTime() {
+
+
+}
+
+  //set days
+  //cycle through 5 days
+  //add: 86400
+  //set variables for 
+  //date
+  //icon
+  //temp
+  //wind
+  //humidity
+
+
+
+function forcast() {
+  fetch(queryURLforcast)
+    .then((queryForcastResults) => queryForcastResults.json())
+    .then((dataForcast) => {
+      console.log(dataForcast.list[0]);
+      console.log(dataForcast.list[0].wind.speed);
+    });
+}
 
 //5day forcast with icon of weather conditions
 
