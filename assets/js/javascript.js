@@ -1,12 +1,12 @@
 const APIKey = "6dfd8cecea8d0220febc6bc4c30dbd34";
 var city = "Brisbane";
-let uvi = "-";
-let uv = "-";
 let lon = 153.0281;
 let lat = -27.4679;
 var queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
 var queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
 var queryURLforcast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`;
+let uvi = "-";
+let uv = "-";
 let temp = "-";
 let day1temp = "-";
 let wind = "-";
@@ -45,6 +45,7 @@ function init() {
 function updateCityData() {
   cityName.textContent = city;
   fetchResetData();
+  forcast();
 }
 
 //based on city name, function to update current weather data
@@ -97,49 +98,18 @@ function icon() {
 
 init();
 
-//retreve localStorage of stored cities
-
-//on search, store city to localStorage
-
-//provide the date
-
-//5day forcast with date
-
-//get unix time
-//set days
-//cycle through 5 days
-//add: 86400
-//set variables for
-//date
-//icon
-//temp
-//wind
-//humidity
-
-forcast();
-
 function forcast() {
   fetch(queryURLforcast)
     .then((queryForcastResults) => queryForcastResults.json())
     .then((dataForcast) => {
-      console.log(dataForcast);
-
       //unix time
 
       //date
+      var day1icon = dataForcast.list[0].weather[0].icon;
+      var day1iconN = document.createElement("img");
+      day1iconN.src = `http://openweathermap.org/img/w/${day1icon}.png`;
+      document.getElementById("day1icon").appendChild(day1iconN);
 
-      // function icon() {
-      //   var icon = document.createElement("img");
-      //   icon.src = `http://openweathermap.org/img/w/${iconN}.png`;
-      //   document.getElementById("cityName").appendChild(icon);
-      // }
-
-      //icon
-      // var day1icon = dataForcast.list[0].weather[0].icon;
-      // var day1iconN = document.createElement("img");
-      // day1icon.src = `http://openweathermap.org/img/w/${day1iconN}.png`;
-      // console.log(day1icon);
-      // document.getElementById("icon").appendChild(day1icon);
       //temp
       day1temp = dataForcast.list[0].main.temp;
       day1tempdata.textContent = day1temp;
@@ -151,22 +121,11 @@ function forcast() {
       day1humiditydata.textContent = day1humidity;
 
       //unix time
-      console.log("unix = " + dataForcast.list[0].dt);
-      console.log("unix tom 2 = " + dataForcast.list[4].dt);
-      console.log("unix tom 3 = " + dataForcast.list[12].dt);
-      console.log("unix tom 4 = " + dataForcast.list[20].dt);
-      console.log("unix tom 5 = " + dataForcast.list[28].dt);
 
-      // console.log("icon = " + dataForcast.list[0].weather[0].icon);
-      // //temp
-      // console.log("temp = " + dataForcast.list[0].main.temp);
-      // //wind
-      // console.log("wind = " + dataForcast.list[0].wind.speed);
-      // //humidity
-      // console.log("humidity = " + dataForcast.list[0].main.humidity);
+      let unixDay1 = moment.unix(dataForcast.list[0].dt).format("DD/MM/YYYY");
+      let unixDay2 = moment.unix(dataForcast.list[4].dt).format("DD/MM/YYYY");
+      let unixDay3 = moment.unix(dataForcast.list[12].dt).format("DD/MM/YYYY");
+      let unixDay4 = moment.unix(dataForcast.list[20].dt).format("DD/MM/YYYY");
+      let unixDay5 = moment.unix(dataForcast.list[28].dt).format("DD/MM/YYYY");
     });
 }
-
-//5day forcast with icon of weather conditions
-
-//when user clicks on a city in search history, it updates to that city
