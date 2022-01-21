@@ -13,15 +13,33 @@ let wind = "-";
 let day1wind = "-";
 let humidity = "-";
 let day1humidity = "-";
+let day2humidity = "-";
+let day3humidity = "-";
+let day4humidity = "-";
+let day5humidity = "-";
 let iconN = "10d";
+let day1iconN = "10d";
 let input = document.querySelector("input");
 let tempdata = document.getElementById("temp");
 let day1tempdata = document.getElementById("day1temp");
+let day2tempdata = document.getElementById("day2temp");
+let day3tempdata = document.getElementById("day3temp");
+let day4tempdata = document.getElementById("day4temp");
+let day5tempdata = document.getElementById("day5temp");
 let winddata = document.getElementById("wind");
 let day1winddata = document.getElementById("day1wind");
+let day2winddata = document.getElementById("day2wind");
+let day3winddata = document.getElementById("day3wind");
+let day4winddata = document.getElementById("day4wind");
+let day5winddata = document.getElementById("day5wind");
+let day55winddata = document.getElementById("day5wind");
 let uvidata = document.getElementById("uv");
 let humiditydata = document.getElementById("humidity");
 let day1humiditydata = document.getElementById("day1humidity");
+let day2humiditydata = document.getElementById("day2humidity");
+let day3humiditydata = document.getElementById("day3humidity");
+let day4humiditydata = document.getElementById("day4humidity");
+let day5humiditydata = document.getElementById("day5humidity");
 let cityName = document.getElementById("cityName");
 let data1call = "";
 let unix = "";
@@ -44,8 +62,8 @@ function init() {
 //changing City Name to city variable
 function updateCityData() {
   cityName.textContent = city;
-  fetchResetData();
   forcast();
+  fetchResetData();
 }
 
 //based on city name, function to update current weather data
@@ -55,7 +73,6 @@ function fetchResetData() {
     .then((data) => {
       iconN = data.weather[0].icon;
       icon();
-      //console.log(data);
       temp = data.main.temp;
       wind = data.wind.speed;
       humidity = data.main.humidity;
@@ -99,33 +116,52 @@ function icon() {
 init();
 
 function forcast() {
+  queryURLforcast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`;
   fetch(queryURLforcast)
     .then((queryForcastResults) => queryForcastResults.json())
     .then((dataForcast) => {
-      //unix time
-
-      //date
-      var day1icon = dataForcast.list[0].weather[0].icon;
-      var day1iconN = document.createElement("img");
-      day1iconN.src = `http://openweathermap.org/img/w/${day1icon}.png`;
-      document.getElementById("day1icon").appendChild(day1iconN);
-
       //temp
       day1temp = dataForcast.list[0].main.temp;
+      day2temp = dataForcast.list[4].main.temp;
+      day3temp = dataForcast.list[12].main.temp;
+      day4temp = dataForcast.list[20].main.temp;
+      day5temp = dataForcast.list[28].main.temp;
       day1tempdata.textContent = day1temp;
+      day2tempdata.textContent = day2temp;
+      day3tempdata.textContent = day3temp;
+      day4tempdata.textContent = day4temp;
+      day5tempdata.textContent = day5temp;
       //wind
       day1wind = dataForcast.list[0].wind.speed;
+      day2wind = dataForcast.list[4].wind.speed;
+      day3wind = dataForcast.list[12].wind.speed;
+      day4wind = dataForcast.list[20].wind.speed;
+      day5wind = dataForcast.list[28].wind.speed;
       day1winddata.textContent = day1wind;
+      day2winddata.textContent = day2wind;
+      day3winddata.textContent = day3wind;
+      day4winddata.textContent = day4wind;
+      day5winddata.textContent = day5wind;
       //humidity
       day1humidity = dataForcast.list[0].main.humidity;
+      day2humidity = dataForcast.list[4].main.humidity;
+      day3humidity = dataForcast.list[12].main.humidity;
+      day4humidity = dataForcast.list[20].main.humidity;
+      day5humidity = dataForcast.list[28].main.humidity;
       day1humiditydata.textContent = day1humidity;
+      day2humiditydata.textContent = day2humidity;
+      day3humiditydata.textContent = day3humidity;
+      day4humiditydata.textContent = day4humidity;
+      day5humiditydata.textContent = day5humidity;
 
       //unix time
-
-      let unixDay1 = moment.unix(dataForcast.list[0].dt).format("DD/MM/YYYY");
       let unixDay2 = moment.unix(dataForcast.list[4].dt).format("DD/MM/YYYY");
       let unixDay3 = moment.unix(dataForcast.list[12].dt).format("DD/MM/YYYY");
       let unixDay4 = moment.unix(dataForcast.list[20].dt).format("DD/MM/YYYY");
       let unixDay5 = moment.unix(dataForcast.list[28].dt).format("DD/MM/YYYY");
+      document.getElementById("day2date").textContent = unixDay2;
+      document.getElementById("day3date").textContent = unixDay3;
+      document.getElementById("day4date").textContent = unixDay4;
+      document.getElementById("day5date").textContent = unixDay5;
     });
 }
