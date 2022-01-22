@@ -1,5 +1,5 @@
-const APIKey = "c619a40e2d6e0fbd606e69324a112dca";
-//const APIKey = "6dfd8cecea8d0220febc6bc4c30dbd34";
+//const APIKey = "c619a40e2d6e0fbd606e69324a112dca";
+const APIKey = "6dfd8cecea8d0220febc6bc4c30dbd34";
 var city = "Brisbane";
 let cityObject = JSON.parse(localStorage.getItem("cityObject")) || [];
 let lon = 153.0281;
@@ -157,6 +157,7 @@ function fetch1call() {
     .then((query1callResults) => query1callResults.json())
     .then((data1call) => {
       queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+      console.log(uvi);
       uv = data1call.current.uvi;
       uvidata.textContent = uv;
       if (uv == 0) {
@@ -186,6 +187,11 @@ function forcast() {
     .then((queryForcastResults) => queryForcastResults.json())
     .then((dataForcast) => {
       //icon
+      $("#day1icon").empty();
+      $("#day2icon").empty();
+      $("#day3icon").empty();
+      $("#day4icon").empty();
+      $("#day5icon").empty();
       var day1iconN = dataForcast.list[0].weather[0].icon;
       var day2iconN = dataForcast.list[4].weather[0].icon;
       var day3iconN = dataForcast.list[12].weather[0].icon;
@@ -201,11 +207,11 @@ function forcast() {
       day3icon.src = `https://openweathermap.org/img/w/${day3iconN}.png`;
       day4icon.src = `https://openweathermap.org/img/w/${day4iconN}.png`;
       day5icon.src = `https://openweathermap.org/img/w/${day5iconN}.png`;
-      document.getElementById("day1date").appendChild(day1icon);
-      document.getElementById("day2date").appendChild(day2icon);
-      document.getElementById("day3date").appendChild(day3icon);
-      document.getElementById("day4date").appendChild(day4icon);
-      document.getElementById("day5date").appendChild(day5icon);
+      document.getElementById("day1icon").appendChild(day1icon);
+      document.getElementById("day2icon").appendChild(day2icon);
+      document.getElementById("day3icon").appendChild(day3icon);
+      document.getElementById("day4icon").appendChild(day4icon);
+      document.getElementById("day5icon").appendChild(day5icon);
 
       //temp
       day1temp = dataForcast.list[0].main.temp;
