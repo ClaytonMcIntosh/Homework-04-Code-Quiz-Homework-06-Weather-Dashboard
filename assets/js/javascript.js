@@ -175,7 +175,7 @@ function fetch1call() {
 //update the icon element
 function icon() {
   var icon = document.createElement("img");
-  icon.src = `http://openweathermap.org/img/w/${iconN}.png`;
+  icon.src = `https://openweathermap.org/img/w/${iconN}.png`;
   document.getElementById("cityName").appendChild(icon);
 }
 
