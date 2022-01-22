@@ -3,6 +3,8 @@ let city = "Cape Town";
 let cityArray = ["Brisbane"];
 let cityObject = { Cities: cityArray };
 
+localStorage.setItem("cityObject", JSON.stringify(cityObject));
+
 getHistoryObjectFromLocalStorage();
 appendAllCityNamestoPageAtStart();
 changeCityName();
@@ -11,7 +13,7 @@ function getHistoryObjectFromLocalStorage() {
   const retrievedcityObject = localStorage.getItem("cityObject");
   cityObject = JSON.parse(retrievedcityObject);
   console.log(cityObject);
-  cityArray = cityObject.Cities;
+cityArray = cityObject.Cities;
 }
 
 function changeCityName() {
