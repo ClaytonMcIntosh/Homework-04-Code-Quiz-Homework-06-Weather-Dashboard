@@ -50,16 +50,26 @@ const historyCities = { city: "Brisbane" };
 getHistoryObjectFromLocalStorage();
 appendAllCityNamestoPageAtStart();
 changeCityName();
+noTextnoPlay();
 
 function getHistoryObjectFromLocalStorage() {
   cityObject = JSON.parse(localStorage.getItem("cityObject")) || [];
 }
 
 function changeCityName() {
+  // noTextnoPlay();
   document.getElementById("searchBtn").addEventListener("click", function () {
     city = input.value;
     addCityNametoButtonandAppendtoPage();
   });
+}
+
+function noTextnoPlay() {
+  if (document.getElementById("input_text").value === "") {
+    document.getElementById("searchBtn").disabled = true;
+  } else {
+    document.getElementById("searchBtn").disabled = false;
+  }
 }
 
 function addCityNametoButtonandAppendtoPage() {
