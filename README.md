@@ -34,7 +34,7 @@ I compleated this project with Bootstrap, Moment and just a touch of jQuery. Fil
 
 ## Screenshot of Deployed Application
 
-![ScreenShot](./assets/img/screenshot.png)
+![ScreenShot](./assets/img/Screenshot.png)
 
 ### Link:
 
