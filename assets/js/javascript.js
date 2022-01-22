@@ -88,11 +88,9 @@ function addCityNametoLocalStorage() {
 
 //adding onclick to dynamicly created events
 
-var element = document.querySelector(".button");
+var element = document.querySelector("#history");
 element.onclick = function () {
-  console.log("cool");
-  city = element.value;
-  console.log(city);
+  city = city = event.target.textContent;
   queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
   updateCityData();
 };
