@@ -157,7 +157,6 @@ function fetch1call() {
     .then((query1callResults) => query1callResults.json())
     .then((data1call) => {
       queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
-      console.log(uvi);
       uv = data1call.current.uvi;
       uvidata.textContent = uv;
       if (uv == 0) {
