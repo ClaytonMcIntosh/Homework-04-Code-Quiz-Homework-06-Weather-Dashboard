@@ -43,6 +43,22 @@ let day5humiditydata = document.getElementById("day5humidity");
 let cityName = document.getElementById("cityName");
 let data1call = "";
 let unix = "";
+const historyCities = { city: "Brisbane" };
+
+// get();
+// set();
+
+// function set() {
+//   localStorage.setItem("historyCities", JSON.stringify(historyCities));
+// }
+
+// function get() {
+//   var retrievedObject = localStorage.getItem("historyCities");
+//   console.log("retrievedObject: ", JSON.parse(retrievedObject));
+
+
+
+// }
 
 //queryselector on click of Search button updates the city name and runs the APIkey.
 
@@ -50,8 +66,12 @@ document.getElementById("searchBtn").addEventListener("click", function () {
   city = input.value;
   queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
 
+  // historyCities["city"] = city;
+  // set();
   updateCityData();
 });
+
+
 
 //play functions to update data
 function init() {
@@ -153,7 +173,6 @@ function forcast() {
       day3humiditydata.textContent = day3humidity;
       day4humiditydata.textContent = day4humidity;
       day5humiditydata.textContent = day5humidity;
-
       //unix time
       let unixDay2 = moment.unix(dataForcast.list[4].dt).format("DD/MM/YYYY");
       let unixDay3 = moment.unix(dataForcast.list[12].dt).format("DD/MM/YYYY");
