@@ -186,9 +186,27 @@ function forcast() {
     .then((queryForcastResults) => queryForcastResults.json())
     .then((dataForcast) => {
       //icon
-      day1icon = dataForcast.list[0].weather.icon;
-      console.log(day1icon)  
-      console.log(dataForcast.list[0].weather.0.icon)  
+      var day1iconN = dataForcast.list[0].weather[0].icon;
+      var day2iconN = dataForcast.list[4].weather[0].icon;
+      var day3iconN = dataForcast.list[12].weather[0].icon;
+      var day4iconN = dataForcast.list[20].weather[0].icon;
+      var day5iconN = dataForcast.list[28].weather[0].icon;
+      var day1icon = document.createElement("img");
+      var day2icon = document.createElement("img");
+      var day3icon = document.createElement("img");
+      var day4icon = document.createElement("img");
+      var day5icon = document.createElement("img");
+      day1icon.src = `http://openweathermap.org/img/w/${day1iconN}.png`;
+      day2icon.src = `http://openweathermap.org/img/w/${day2iconN}.png`;
+      day3icon.src = `http://openweathermap.org/img/w/${day3iconN}.png`;
+      day4icon.src = `http://openweathermap.org/img/w/${day4iconN}.png`;
+      day5icon.src = `http://openweathermap.org/img/w/${day5iconN}.png`;
+      document.getElementById("day1date").appendChild(day1icon);
+      document.getElementById("day2date").appendChild(day2icon);
+      document.getElementById("day3date").appendChild(day3icon);
+      document.getElementById("day4date").appendChild(day4icon);
+      document.getElementById("day5date").appendChild(day5icon);
+
       //temp
       day1temp = dataForcast.list[0].main.temp;
       day2temp = dataForcast.list[4].main.temp;
