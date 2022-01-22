@@ -20,7 +20,11 @@ let day3humidity = "-";
 let day4humidity = "-";
 let day5humidity = "-";
 let iconN = "10d";
-let day1iconN = "10d";
+let iconNday1 = "10d";
+let iconNday2 = "10d";
+let iconNday3 = "10d";
+let iconNday4 = "10d";
+let iconNday5 = "10d";
 let input = document.querySelector("input");
 let tempdata = document.getElementById("temp");
 let day1tempdata = document.getElementById("day1temp");
@@ -181,6 +185,10 @@ function forcast() {
   fetch(queryURLforcast)
     .then((queryForcastResults) => queryForcastResults.json())
     .then((dataForcast) => {
+      //icon
+      day1icon = dataForcast.list[0].weather.icon;
+      console.log(day1icon)  
+      console.log(dataForcast.list[0].weather.0.icon)  
       //temp
       day1temp = dataForcast.list[0].main.temp;
       day2temp = dataForcast.list[4].main.temp;
