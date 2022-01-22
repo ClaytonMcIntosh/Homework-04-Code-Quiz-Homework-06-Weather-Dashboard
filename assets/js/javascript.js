@@ -4,7 +4,7 @@ var city = "Brisbane";
 let cityObject = JSON.parse(localStorage.getItem("cityObject")) || [];
 let lon = 153.0281;
 let lat = -27.4679;
-var queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
+var queryURLcurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
 var queryURL1call = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
 var queryURLforcast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`;
 let uvi = "-";
@@ -105,7 +105,7 @@ function addCityNametoLocalStorage() {
 var element = document.querySelector("#history");
 element.onclick = function () {
   city = city = event.target.textContent;
-  queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
+  queryURLcurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
   updateCityData();
 };
 
@@ -113,7 +113,7 @@ element.onclick = function () {
 
 document.getElementById("searchBtn").addEventListener("click", function () {
   city = input.value;
-  queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
+  queryURLcurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
 
   updateCityData();
 });
@@ -196,11 +196,11 @@ function forcast() {
       var day3icon = document.createElement("img");
       var day4icon = document.createElement("img");
       var day5icon = document.createElement("img");
-      day1icon.src = `http://openweathermap.org/img/w/${day1iconN}.png`;
-      day2icon.src = `http://openweathermap.org/img/w/${day2iconN}.png`;
-      day3icon.src = `http://openweathermap.org/img/w/${day3iconN}.png`;
-      day4icon.src = `http://openweathermap.org/img/w/${day4iconN}.png`;
-      day5icon.src = `http://openweathermap.org/img/w/${day5iconN}.png`;
+      day1icon.src = `https://openweathermap.org/img/w/${day1iconN}.png`;
+      day2icon.src = `https://openweathermap.org/img/w/${day2iconN}.png`;
+      day3icon.src = `https://openweathermap.org/img/w/${day3iconN}.png`;
+      day4icon.src = `https://openweathermap.org/img/w/${day4iconN}.png`;
+      day5icon.src = `https://openweathermap.org/img/w/${day5iconN}.png`;
       document.getElementById("day1date").appendChild(day1icon);
       document.getElementById("day2date").appendChild(day2icon);
       document.getElementById("day3date").appendChild(day3icon);
