@@ -1,5 +1,6 @@
 const APIKey = "6dfd8cecea8d0220febc6bc4c30dbd34";
 var city = "Brisbane";
+let cityObject = JSON.parse(localStorage.getItem("cityObject")) || [];
 let lon = 153.0281;
 let lat = -27.4679;
 var queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
@@ -45,20 +46,55 @@ let data1call = "";
 let unix = "";
 const historyCities = { city: "Brisbane" };
 
-// get();
-// set();
+getHistoryObjectFromLocalStorage();
+appendAllCityNamestoPageAtStart();
+changeCityName();
 
-// function set() {
-//   localStorage.setItem("historyCities", JSON.stringify(historyCities));
-// }
+function getHistoryObjectFromLocalStorage() {
+  cityObject = JSON.parse(localStorage.getItem("cityObject")) || [];
+}
 
-// function get() {
-//   var retrievedObject = localStorage.getItem("historyCities");
-//   console.log("retrievedObject: ", JSON.parse(retrievedObject));
+function changeCityName() {
+  document.getElementById("searchBtn").addEventListener("click", function () {
+    city = input.value;
+    addCityNametoButtonandAppendtoPage();
+  });
+}
 
+function addCityNametoButtonandAppendtoPage() {
+  let histButton = document.createElement("button");
+  //histButton.id = `button${city}`;
+  histButton.className = "button";
+  histButton.textContent = city;
+  document.getElementById("history").appendChild(histButton);
+  addCityNametoLocalStorage();
+}
 
+function appendAllCityNamestoPageAtStart() {
+  for (i = 0; i < cityObject.length; i++) {
+    let histButton = document.createElement("button");
+    // histButton.id = `button${city}`;
+    histButton.className = "button";
+    histButton.textContent = cityObject[i];
+    document.getElementById("history").appendChild(histButton);
+  }
+}
 
-// }
+function addCityNametoLocalStorage() {
+  cityObject.unshift(city);
+  localStorage.setItem("cityObject", JSON.stringify(cityObject));
+}
+
+//adding onclick to dynamicly created events
+
+var element = document.getElementsByClassName("button");
+element.onclick = function () {
+  console.log("cool");
+  city = element.value;
+  console.log(city);
+  queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
+  updateCityData();
+};
 
 //queryselector on click of Search button updates the city name and runs the APIkey.
 
@@ -66,12 +102,8 @@ document.getElementById("searchBtn").addEventListener("click", function () {
   city = input.value;
   queryURLcurrent = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
 
-  // historyCities["city"] = city;
-  // set();
   updateCityData();
 });
-
-
 
 //play functions to update data
 function init() {
