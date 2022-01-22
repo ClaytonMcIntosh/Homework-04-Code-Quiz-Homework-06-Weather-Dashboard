@@ -1,4 +1,5 @@
-const APIKey = "6dfd8cecea8d0220febc6bc4c30dbd34";
+const APIKey = "c619a40e2d6e0fbd606e69324a112dca";
+//const APIKey = "6dfd8cecea8d0220febc6bc4c30dbd34";
 var city = "Brisbane";
 let cityObject = JSON.parse(localStorage.getItem("cityObject")) || [];
 let lon = 153.0281;
@@ -87,7 +88,7 @@ function addCityNametoLocalStorage() {
 
 //adding onclick to dynamicly created events
 
-var element = document.getElementsByClassName("button");
+var element = document.querySelector(".button");
 element.onclick = function () {
   console.log("cool");
   city = element.value;
